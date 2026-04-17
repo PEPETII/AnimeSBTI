@@ -1,6 +1,6 @@
 
 
-![Uploading image.png…]()
+[![Uploading image.png…]()](https://github.com/PEPETII/AnimeSBTI/issues/1#issue-4285346590)
 
 
 
