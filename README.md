@@ -1,7 +1,4 @@
-
-
-[![Uploading image.png…]()](https://github.com/PEPETII/AnimeSBTI/issues/1#issue-4285346590)
-
+![Uploading 屏幕截图 2026-04-18 042756.png…]()
 
 
 
