@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AnimeSBTI — 测测你是哪个动漫角色</title>
+    <meta name="description" content="300道荒诞题目，81个原创动漫角色，测测你的二次元灵魂伴侣">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#" onclick="showPage('page-home');return false;">✦ AnimeSBTI</a>
+            <div class="nav-links">
+                <a href="#" onclick="showPage('page-home');return false;">首页</a>
+                <a href="#" onclick="showPage('page-gallery');return false;">角色图鉴</a>
+                <a href="#" onclick="startTest();return false;">开始测试</a>
+            </div>
+            <button class="nav-mobile-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="nav-mobile-menu hidden" id="mobile-menu">
+            <a href="#" onclick="showPage('page-home');closeMobileMenu();return false;">首页</a>
+            <a href="#" onclick="showPage('page-gallery');closeMobileMenu();return false;">角色图鉴</a>
+            <a href="#" onclick="startTest();closeMobileMenu();return false;">开始测试</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- ==================== 首页 ==================== -->
+        <div id="page-home" class="page">
+            <!-- Hero 区域 -->
+            <section class="hero">
+                <!-- 角色形象展示条 -->
+                <div class="hero-characters" id="hero-characters">
+                    <!-- 由 JS 动态生成 -->
+                </div>
+                <div class="hero-badge">✨ 81 个动漫角色等你解锁</div>
+                <h1 class="hero-title">终于有人<br>把你看懂了。</h1>
+                <p class="hero-subtitle">回答情境式问题 · 获得你的二次元人格原型<br>发现你灵魂深处的那个动漫角色</p>
+                <div class="hero-actions">
+                    <button class="btn-primary btn-large btn-accent" onclick="startTest()">开始测试 →</button>
+                    <button class="btn-ghost" onclick="showPage('page-gallery')">浏览角色图鉴</button>
+                </div>
+                <p class="hero-note">纯前端运行 · 无需注册 · 隐私安全</p>
+            </section>
+
+            <!-- 波浪分隔 -->
+            <div class="wave-divider">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,60 C200,120 400,0 600,60 C800,120 1000,0 1200,60 L1200,120 L0,120 Z" fill="#fffcf5"/>
+                </svg>
+            </div>
+
+            <!-- 统计展示区 -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="300">0</div>
+                        <div class="stat-label">情境题目</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="81">0</div>
+                        <div class="stat-label">动漫角色</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="27">0</div>
+                        <div class="stat-label">人格类型</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">核心维度</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 功能介绍区 -->
+            <section class="features-section">
+                <div class="feature-row">
+                    <div class="feature-text">
+                        <span class="feature-tag">📐 四维判定</span>
+                        <h3 class="feature-title">行动力 · 社交力 · 决策力 · 世界观</h3>
+                        <p class="feature-desc">基于四大核心维度构建严谨的底层框架，每个维度三级划分，组合出 81 种独特的人格原型。你的每一个选择，都在描绘你灵魂的轮廓。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="dim-demo">
+                            <div class="dim-demo-item"><span>冷静</span><div class="dim-demo-bar"><div style="width:30%;background:#E63946;"></div></div><span>热血</span></div>
+                            <div class="dim-demo-item"><span>社恐</span><div class="dim-demo-bar"><div style="width:70%;background:#457B9D;"></div></div><span>社牛</span></div>
+                            <div class="dim-demo-item"><span>纠结</span><div class="dim-demo-bar"><div style="width:55%;background:#2A9D8F;"></div></div><span>果断</span></div>
+                            <div class="dim-demo-item"><span>现实</span><div class="dim-demo-bar"><div style="width:80%;background:#E9C46A;"></div></div><span>理想</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-row feature-row-reverse">
+                    <div class="feature-text">
+                        <span class="feature-tag">🎲 随机测试</span>
+                        <h3 class="feature-title">每次 20 题，每次都是新体验</h3>
+                        <p class="feature-desc">从 300 道精心设计的情境式题目中随机抽取，每次测试都是独一无二的旅程。你的回答决定了你灵魂深处的那个人。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="quiz-demo">
+                            <div class="quiz-demo-q">"如果世界末日来了，你的第一反应是？"</div>
+                            <div class="quiz-demo-opts">
+                                <div class="quiz-demo-opt active">A. 先囤物资再说</div>
+                                <div class="quiz-demo-opt">B. 找到最重要的人</div>
+                                <div class="quiz-demo-opt">C. 终于不用上班了</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-row">
+                    <div class="feature-text">
+                        <span class="feature-tag">🖼️ 精美插画</span>
+                        <h3 class="feature-title">81 张 Low-Poly 角色插画</h3>
+                        <p class="feature-desc">每个角色都拥有专属的 Low-Poly 几何风格插画，由三角形多面体构成，配合平面着色，呈现独特的二次元美学。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="art-demo" id="art-demo">
+                            <!-- 由 JS 动态生成 4 张角色图 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-row feature-row-reverse">
+                    <div class="feature-text">
+                        <span class="feature-tag">📤 一键分享</span>
+                        <h3 class="feature-title">精美海报，分享你的二次元身份</h3>
+                        <p class="feature-desc">测试完成后生成专属角色海报，展示你的维度分析、角色标签和灵魂伴侣。保存图片，分享给同好。</p>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="poster-demo">
+                            <div class="poster-demo-inner">
+                                <div class="poster-demo-avatar">🎭</div>
+                                <div class="poster-demo-name">你的角色</div>
+                                <div class="poster-demo-code">A2S1D0W2</div>
+                                <div class="poster-demo-bars"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 角色预览区（加大展示） -->
+            <section class="preview-section">
+                <h2 class="section-title">部分角色一览</h2>
+                <p class="section-subtitle">81 位来自不同作品的动漫角色，等待与你相遇</p>
+                <div class="preview-grid" id="preview-grid">
+                    <!-- 由 JS 动态生成 -->
+                </div>
+                <button class="btn-primary" onclick="showPage('page-gallery')" style="margin-top:30px;">查看全部 81 个角色 →</button>
+            </section>
+
+            <!-- 用户评价区 -->
+            <section class="testimonials-section">
+                <div class="testimonials-quote">❝</div>
+                <h2 class="section-title">大家怎么说</h2>
+                <p class="section-subtitle">来自测试者的真实反馈</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" style="--card-color:#E63946;">
+                        <div class="testimonial-top-bar"></div>
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#E63946,#ff6b6b);">L</div>
+                        <div class="testimonial-name">Luna</div>
+                        <div class="testimonial-type">热血社牛 · A2S2</div>
+                        <div class="testimonial-text">"测出来是路飞，笑死，我确实每天只想着吃肉和冒险！太准了吧！"</div>
+                    </div>
+                    <div class="testimonial-card" style="--card-color:#457B9D;">
+                        <div class="testimonial-top-bar"></div>
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#457B9D,#6db3d4);">K</div>
+                        <div class="testimonial-name">Kuro</div>
+                        <div class="testimonial-type">冷静社恐 · A0S0</div>
+                        <div class="testimonial-text">"测出来是富冈义勇…虽然不想承认但真的很像，话少但内心戏超多。"</div>
+                    </div>
+                    <div class="testimonial-card" style="--card-color:#2A9D8F;">
+                        <div class="testimonial-top-bar"></div>
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#2A9D8F,#52d4b8);">M</div>
+                        <div class="testimonial-name">Miku</div>
+                        <div class="testimonial-type">平和佛系 · A1S1</div>
+                        <div class="testimonial-text">"测出来是阿尔冯斯，好感动！温柔的人果然会被温柔对待 🥺"</div>
+                    </div>
+                    <div class="testimonial-card" style="--card-color:#E9C46A;">
+                        <div class="testimonial-top-bar"></div>
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#E9C46A,#f0d98c);">S</div>
+                        <div class="testimonial-name">Shiro</div>
+                        <div class="testimonial-type">理想冲动 · A2D2</div>
+                        <div class="testimonial-text">"测了三次都是不同角色，每次都很准！已经安利给全宿舍了哈哈哈"</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 底部 CTA -->
+            <section class="cta-section">
+                <div class="cta-wave-top">
+                    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+                        <path d="M0,0 C300,60 900,0 1200,40 L1200,0 L0,0 Z" fill="#2d3748"/>
+                    </svg>
+                </div>
+                <div class="cta-inner">
+                    <h2 class="cta-title">想知道你是哪个<br>动漫角色吗？</h2>
+                    <button class="btn-primary btn-large btn-accent" onclick="startTest()">立即开始测试 →</button>
+                    <p class="cta-note">仅供娱乐，不构成任何性格评判</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-inner">
+                    <div class="footer-col">
+                        <div class="footer-logo">✦ AnimeSBTI</div>
+                        <p class="footer-desc">基于 MBTI 理论的二次元角色原型测试，纯前端运行，无需注册，不收集任何数据。</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-heading">关于测试</h4>
+                        <p class="footer-text">300 道情境式题目</p>
+                        <p class="footer-text">81 个动漫角色</p>
+                        <p class="footer-text">4 大核心维度</p>
+                        <p class="footer-text">81 种人格原型</p>
+                    </div>
+
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 AnimeSBTI · 仅供娱乐 · 角色版权归原作者所有</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- ==================== 角色图鉴页 ==================== -->
+        <div id="page-gallery" class="page hidden">
+            <section class="gallery-header">
+                <h1 class="gallery-title">角色图鉴</h1>
+                <p class="gallery-subtitle">全部 81 位可命中的动漫角色</p>
+                <div class="gallery-filters" id="gallery-filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterGallery('all')">全部</button>
+                    <button class="filter-btn" data-filter="冷静" onclick="filterGallery('冷静')">🧊 冷静</button>
+                    <button class="filter-btn" data-filter="平和" onclick="filterGallery('平和')">🌿 平和</button>
+                    <button class="filter-btn" data-filter="热血" onclick="filterGallery('热血')">🔥 热血</button>
+                </div>
+                <div class="gallery-sort">
+                    <span class="gallery-count" id="gallery-count">共 81 个角色</span>
+                </div>
+            </section>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- 由 JS 动态生成 -->
+            </div>
+        </div>
+
+        <!-- ==================== 答题页 ==================== -->
+        <div id="page-quiz" class="page hidden">
+            <div class="quiz-container">
+                <div class="quiz-progress-section">
+                    <div class="quiz-progress-bar">
+                        <div id="progress-bar" class="quiz-progress-fill"></div>
+                    </div>
+                    <div id="progress-text" class="quiz-progress-text">1 / 20</div>
+                </div>
+
+                <div class="quiz-question-area">
+                    <div id="question-text" class="quiz-question-text">问题加载中...</div>
+                    <div id="options-container" class="quiz-options"></div>
+                </div>
+                <div class="quiz-nav">
+                    <button class="btn-ghost" onclick="prevQuestion()" id="back-btn">← 上一题</button>
+                    <button class="btn-primary" onclick="skipQuestion()" id="skip-btn">跳过 →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 结果页 ==================== -->
+        <div id="page-result" class="page hidden">
+            <div class="result-page">
+                <!-- Hero 区域（动态主题色背景） -->
+                <div class="result-hero" id="result-hero">
+                    <div class="result-hero-inner">
+                        <!-- 左列：文案 -->
+                        <div class="hero-copy">
+                            <div class="hero-kicker">ANIME SBTI</div>
+                            <h1 class="hero-char-name" id="char-name">角色名</h1>
+                            <div class="hero-code-pill" id="result-code-badge">A2S1D0W2</div>
+                            <div class="hero-metrics">
+                                <div class="hero-metric">
+                                    <div class="hero-metric-label">匹配度</div>
+                                    <div class="hero-metric-value" id="match-percent">98%</div>
+                                </div>
+                            </div>
+                            <p class="hero-anime" id="char-anime">动漫出处</p>
+                            <p class="hero-oneliner" id="char-oneliner">一句话介绍</p>
+                        </div>
+                        <!-- 右列：角色大图海报框 -->
+                        <div class="hero-visual">
+                            <div class="poster-frame" id="poster-frame">
+                                <img id="char-image" class="poster-frame-img" alt="角色">
+                                <div class="poster-frame-fallback hidden" id="char-initial">名</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 波浪分隔 -->
+                    <div class="hero-wave">
+                        <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+                            <path d="M0,40 C300,80 600,0 900,40 C1050,60 1150,20 1200,40 L1200,80 L0,80 Z" fill="#f4ecdf"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Body 区域 -->
+                <div class="result-body">
+                    <div class="result-body-main">
+                        <!-- 操作按钮 -->
+                        <div class="result-actions">
+                            <button class="btn-primary btn-accent" onclick="generateAndSavePoster()">📥 保存分享海报</button>
+                            <button class="btn-ghost" onclick="copyResult()">📋 复制结果</button>
+                            <button class="btn-ghost" onclick="restartTest()">🔄 再测一次</button>
+                        </div>
+
+                        <!-- 维度分析（16personalities 风格滑块） -->
+                        <div class="result-section">
+                            <h3 class="result-section-title">📊 维度分析</h3>
+                            <div id="dimension-sliders" class="dimension-sliders">
+                                <!-- 由 JS 动态生成 -->
+                            </div>
+                        </div>
+
+                        <!-- 角色标签 -->
+                        <div class="result-section">
+                            <h3 class="result-section-title">🏷️ 角色标签</h3>
+                            <div class="char-tags" id="char-tags"></div>
+                        </div>
+
+                        <!-- 角色描述 -->
+                        <div class="result-section">
+                            <h3 class="result-section-title">📖 角色解读</h3>
+                            <div class="char-desc" id="char-desc">描述加载中...</div>
+                            <div class="char-quote" id="char-quote">
+                                <span class="char-quote-mark">❝</span>
+                                <span class="char-quote-text" id="char-quote-text">台词加载中...</span>
+                                <span class="char-quote-mark" style="float:right;margin-top:-20px;">❞</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 侧边栏 -->
+                    <div class="result-sidebar">
+                        <!-- 角色档案卡 -->
+                        <div class="sidebar-card profile-card">
+                            <div class="profile-code" id="result-code-badge-2">A2S1D0W2</div>
+
+                            <div class="profile-tags" id="profile-tags"></div>
+                        </div>
+
+                        <!-- 相似角色 -->
+                        <div class="sidebar-card">
+                            <h4 class="sidebar-card-title">🔮 你可能也是</h4>
+                            <div class="alt-chars" id="alt-chars"></div>
+                        </div>
+
+                        <!-- 分享提示 -->
+                        <div class="sidebar-card share-card">
+                            <p>觉得准吗？<br>分享给朋友一起测！</p>
+                            <button class="btn-primary btn-accent btn-sm" onclick="startTest()">再测一次 →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Toast 通知 -->
+    <div class="toast hidden" id="toast"></div>
+
+    <!-- 数据文件 -->
+    <script src="sbti_questions.js" charset="UTF-8"></script>
+    <script>
+        var questions = __sbti_questions || [];
+    </script>
+    <script src="sbti-characters.js" charset="UTF-8"></script>
+    <script src="script.js" charset="UTF-8"></script>
+</body>
+</html>
