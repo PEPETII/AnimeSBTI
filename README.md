@@ -1,6 +1,7 @@
-<img width="2331" height="1209" alt="屏幕截图 2026-04-17 203038" src="https://github.com/user-attachments/assets/4691af3a-9b64-45d0-84ca-28f1091fde34" />
 
 
+
+<img width="1358" height="552" alt="屏幕截图 2026-04-18 042756" src="https://github.com/user-attachments/assets/04209d4d-f012-4361-96d5-a5ff9acda8c0" />
 
 一个纯前端的动漫人格测试网页项目。
 
